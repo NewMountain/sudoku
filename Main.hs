@@ -1,5 +1,6 @@
 module Main where
 
+import Data.List
 
 type Row = [ Maybe Int ]
 -- Todo limit int to 0-9
@@ -10,6 +11,19 @@ type Board = [Row]
 -- At each row, create a row of all possibilities that sum to $ sum [1..9]
 -- do not replace any existing data, only Nothing
 -- At each column, do not pick any numbers already used
+
+-- replace the maybes with numbers
+
+allUnusedOptions :: Row -> [[Int]]
+allUnusedOptions row = permutations $ remainingOptions row
+
+
+remainingOptions :: Row -> [Int]
+remainingOptions row =
+  let
+    leftovers = takenSlots row
+  in
+    filter (`notElem` leftovers) [1..9]
 
 
 sampleRow :: Row
