@@ -7,6 +7,22 @@ type Row = [ Maybe Int ]
 type Board = [Row]
 -- Todo
 
+-- At each row, create a row of all possibilities that sum to $ sum [1..9]
+-- do not replace any existing data, only Nothing
+-- At each column, do not pick any numbers already used
+
+
+sampleRow :: Row
+sampleRow = [Just 5, Just 3, Nothing, Nothing, Just 7, Nothing, Nothing, Nothing, Nothing ]
+
+
+takenSlots :: Row -> [Int]
+takenSlots row = map maybePlucker $ filter (/= Nothing) row
+
+
+maybePlucker :: Maybe Int -> Int
+maybePlucker (Just a) = a
+
 
 initBoard :: Board
 initBoard
